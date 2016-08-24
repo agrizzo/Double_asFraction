@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A02C4D141D6D2AAF0088C373 /* readme.md in Sources */ = {isa = PBXBuildFile; fileRef = A02C4D131D6D2AAF0088C373 /* readme.md */; };
 		A0D8EC8E1D6CE05E009A7801 /* Double_asFraction.h in Headers */ = {isa = PBXBuildFile; fileRef = A0D8EC8D1D6CE05E009A7801 /* Double_asFraction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A0D8EC951D6CE05E009A7801 /* Double_asFraction.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D8EC8A1D6CE05E009A7801 /* Double_asFraction.framework */; };
 		A0D8EC9A1D6CE05E009A7801 /* Double_asFractionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D8EC991D6CE05E009A7801 /* Double_asFractionTests.swift */; };
+		A0D8ECA51D6D00EC009A7801 /* Double_asFraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D8ECA41D6D00EC009A7801 /* Double_asFraction.swift */; };
+		A0D8ECA71D6D0127009A7801 /* Struct_Fraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0D8ECA61D6D0127009A7801 /* Struct_Fraction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +26,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A02C4D131D6D2AAF0088C373 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
 		A0D8EC8A1D6CE05E009A7801 /* Double_asFraction.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Double_asFraction.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0D8EC8D1D6CE05E009A7801 /* Double_asFraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Double_asFraction.h; sourceTree = "<group>"; };
 		A0D8EC8F1D6CE05E009A7801 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0D8EC941D6CE05E009A7801 /* Double_asFractionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Double_asFractionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0D8EC991D6CE05E009A7801 /* Double_asFractionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double_asFractionTests.swift; sourceTree = "<group>"; };
 		A0D8EC9B1D6CE05E009A7801 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0D8ECA41D6D00EC009A7801 /* Double_asFraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double_asFraction.swift; sourceTree = "<group>"; };
+		A0D8ECA61D6D0127009A7801 /* Struct_Fraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Struct_Fraction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +59,7 @@
 		A0D8EC801D6CE05D009A7801 = {
 			isa = PBXGroup;
 			children = (
+				A02C4D131D6D2AAF0088C373 /* readme.md */,
 				A0D8EC8C1D6CE05E009A7801 /* Double_asFraction */,
 				A0D8EC981D6CE05E009A7801 /* Double_asFractionTests */,
 				A0D8EC8B1D6CE05E009A7801 /* Products */,
@@ -73,6 +80,8 @@
 			children = (
 				A0D8EC8D1D6CE05E009A7801 /* Double_asFraction.h */,
 				A0D8EC8F1D6CE05E009A7801 /* Info.plist */,
+				A0D8ECA41D6D00EC009A7801 /* Double_asFraction.swift */,
+				A0D8ECA61D6D0127009A7801 /* Struct_Fraction.swift */,
 			);
 			path = Double_asFraction;
 			sourceTree = "<group>";
@@ -196,6 +205,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0D8ECA71D6D0127009A7801 /* Struct_Fraction.swift in Sources */,
+				A02C4D141D6D2AAF0088C373 /* readme.md in Sources */,
+				A0D8ECA51D6D00EC009A7801 /* Double_asFraction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +324,7 @@
 		A0D8EC9F1D6CE05E009A7801 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -322,12 +335,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.koteray.Double-asFraction";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		A0D8ECA01D6CE05E009A7801 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -380,6 +395,7 @@
 				A0D8ECA01D6CE05E009A7801 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A0D8ECA11D6CE05E009A7801 /* Build configuration list for PBXNativeTarget "Double_asFractionTests" */ = {
 			isa = XCConfigurationList;
@@ -388,6 +404,7 @@
 				A0D8ECA31D6CE05E009A7801 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
