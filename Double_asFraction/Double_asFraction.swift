@@ -48,19 +48,24 @@ extension Double {
     private func findNearest(bestGuess: Int, fractions: [Fraction], roundTechnique: RoundTechnique) -> String {
         
         switch true {
-        case self.decimal > fractions[bestGuess].value && self.decimal < fractions[bestGuess + 1].value:
-            // Right where we need to be
-            switch roundTechnique {
-            case .Down:
+            
+        // Right where we need to be
+        case self.decimal >= fractions[bestGuess].value && self.decimal < fractions[bestGuess + 1].value:
+            switch true {
+            case self.decimal == fractions[bestGuess].value:
                 return showAnswer(fractions[bestGuess])
-            case .Up:
+            case roundTechnique == RoundTechnique.Down:
+                return showAnswer(fractions[bestGuess])
+            case roundTechnique == RoundTechnique.Up:
                 return showAnswer(fractions[bestGuess + 1])
-            case .Round:
+            case roundTechnique == RoundTechnique.Round:
                 if (self.decimal - fractions[bestGuess].value) < (fractions[bestGuess + 1].value - self.decimal) {
                     return showAnswer(fractions[bestGuess])
                 } else {
                     return showAnswer(fractions[bestGuess+1])
                 }
+            default:
+                return "Error in Code" //Since there will always be at least 1 roundtechnique that matches
             }
             
         // These are if we were close
