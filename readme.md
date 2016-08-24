@@ -22,20 +22,26 @@ Show a 5664.343 as a ⅓ or ⅔ fraction by rounding to the nearest fraction.
 Option 1:
 Use the helper constants to build the array
 
-let thirdsArray: [Fraction] = (FractionConstants.WholeNumber + FractionConstants.Third).sort(<)
+```swift
+    let thirdsArray: [Fraction] = (FractionConstants.WholeNumber + FractionConstants.Third).sort(<)
+```
 
 Option 2: Build it by hand
 
-let zero = Fraction(description: "Zero", numerator: 0, denominator: 1, unicode: "")
-let oneThird = Fraction(description: "One Third", numerator: 1, denominator: 3, unicode: "\u{2153}")
-let twoThirds = Fraction(description: "Two Thirds", numerator: 2, denominator: 3, unicode: "\u{2154}")
-let one = Fraction(description: "One", numerator: 1, denominator: 1, unicode: "", adder: 1)
-let thirdsArray = [zero, oneThird, twoThirds, one]
+```swift
+    let zero = Fraction(description: "Zero", numerator: 0, denominator: 1, unicode: "")
+    let oneThird = Fraction(description: "One Third", numerator: 1, denominator: 3, unicode: "\u{2153}")
+    let twoThirds = Fraction(description: "Two Thirds", numerator: 2, denominator: 3, unicode: "\u{2154}")
+    let one = Fraction(description: "One", numerator: 1, denominator: 1, unicode: "", adder: 1)
+    let thirdsArray = [zero, oneThird, twoThirds, one]
+```
 
 Execute:
 
-let x: Double = 5664.343
-let answer: String = x.asFraction(thirdsArray, roundTechnique: Float.RoundTechnique.round)
+```swift
+    let x: Double = 5664.343
+    let answer: String = x.asFraction(thirdsArray, roundTechnique: Float.RoundTechnique.round)
+```
 
 Answer should be 5664 ⅓ 
 
