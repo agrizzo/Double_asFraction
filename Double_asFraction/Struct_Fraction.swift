@@ -77,11 +77,24 @@ public struct FractionConstants {
     public static let ThirdTwo = Fraction(description: "Two Thirds", numerator: 2, denominator: 3, unicode: "\u{2154}")
     public static let FourthOne = Fraction(description: "One Fourth", numerator: 1, denominator: 4, unicode: "\u{00BC}")
     public static let FourthThree = Fraction(description: "Three Fourths", numerator: 3, denominator: 4, unicode: "\u{00BE}")
+    public static let FifthOne = Fraction(description: "One Fifth", numerator: 1, denominator: 5, unicode: "\u{2155}")
+    public static let FifthTwo = Fraction(description: "Two Fifths", numerator: 2, denominator: 5, unicode: "\u{2156}")
+    public static let FifthThree = Fraction(description: "Three Fifths", numerator: 3, denominator: 5, unicode: "\u{2157}")
+    public static let FifthFour = Fraction(description: "Four Fifths", numerator: 4, denominator: 5, unicode: "\u{2158}")
+    public static let SixthOne = Fraction(description: "One Sixth", numerator: 1, denominator: 6, unicode: "\u{2159}")
+    public static let SixthFive = Fraction(description: "Five Sixths", numerator: 5, denominator: 6, unicode: "\u{215A}")
+    public static let EighthOne = Fraction(description: "One Eighth", numerator: 1, denominator: 8, unicode: "\u{215B}")
+    public static let EighthThree = Fraction(description: "Three Eighths", numerator: 3, denominator: 8, unicode: "\u{215C}")
+    public static let EighthFive = Fraction(description: "Five Eighths", numerator: 5, denominator: 8, unicode: "\u{215D}")
+    public static let EighthSeven = Fraction(description: "Seven Eighths", numerator: 7, denominator: 8, unicode: "\u{215E}")
     
     public static let WholeNumber = [FractionConstants.Zero, FractionConstants.One]
     public static let Half = [FractionConstants.HalfOne]
     public static let Third = [FractionConstants.ThirdOne, FractionConstants.ThirdTwo]
     public static let Quarter = [FractionConstants.FourthOne, FractionConstants.FourthThree]
+    public static let Fifth = [FractionConstants.FifthOne, FractionConstants.FifthTwo, FractionConstants.FifthThree, FractionConstants.FifthFour]
+    public static let Sixth = [FractionConstants.SixthOne, FractionConstants.SixthFive]
+    public static let Eighth = [FractionConstants.EighthOne, FractionConstants.EighthThree, FractionConstants.EighthFive, FractionConstants.EighthSeven]
     
     
 }
