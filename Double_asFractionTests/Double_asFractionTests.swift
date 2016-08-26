@@ -35,7 +35,14 @@ class Double_asFractionTests: XCTestCase {
                                            Fraction(description: "Nine Tenths", numerator: 9, denominator: 10, unicode: nil)]
         var TensArray: [Fraction] = (FractionConstants.WholeNumber + tenthsFractions + FractionConstants.Fifth + FractionConstants.Half)
         TensArray.sortInPlace(<)
-  //      var TensArray: [Fraction] = (FractionConstants.WholeNumber + tenthsFractions + FractionConstants.Fifth + FractionConstants.Half)
+        
+        let logarArray: [Fraction] = [Fraction(description: "One Tenth", numerator: 1, denominator: 10, unicode: nil),
+                                      FractionConstants.SixthOne, FractionConstants.FifthOne, FractionConstants.FourthOne, FractionConstants.ThirdOne, FractionConstants.HalfOne]
+        
+        
+        
+        //logarArray = (logarArray + FractionConstants.WholeNumber).sortInPlace(<)
+        
         
         x = 444.44
 
@@ -60,6 +67,13 @@ class Double_asFractionTests: XCTestCase {
         answer = "\(x.asFraction(ThirdsArray, roundTechnique: Double.RoundTechnique.Up))"
         XCTAssertEqual(answer, "444 \(FractionConstants.ThirdTwo.unicode!)")
 
+        answer = "\(x.asFraction(logarArray, roundTechnique: Double.RoundTechnique.Round))"
+        XCTAssertEqual(answer, "444 \(FractionConstants.HalfOne.unicode!)")
+        answer = "\(x.asFraction(logarArray, roundTechnique: Double.RoundTechnique.Down))"
+        XCTAssertEqual(answer, "444 \(FractionConstants.ThirdOne.unicode!)")
+        answer = "\(x.asFraction(logarArray, roundTechnique: Double.RoundTechnique.Up))"
+        XCTAssertEqual(answer, "444 \(FractionConstants.HalfOne.unicode!)")
+
         x = 7.5
         
         answer = "\(x.asFraction(FractionConstants.WholeNumber, roundTechnique: Double.RoundTechnique.Round))"
@@ -83,6 +97,12 @@ class Double_asFractionTests: XCTestCase {
         answer = "\(x.asFraction(ThirdsArray, roundTechnique: Double.RoundTechnique.Up))"
         XCTAssertEqual(answer, "7 \(FractionConstants.ThirdTwo.unicode!)")
         
+        answer = "\(x.asFraction(logarArray, roundTechnique: Double.RoundTechnique.Round))"
+        XCTAssertEqual(answer, "7 \(FractionConstants.HalfOne.unicode!)")
+        answer = "\(x.asFraction(logarArray, roundTechnique: Double.RoundTechnique.Down))"
+        XCTAssertEqual(answer, "7 \(FractionConstants.HalfOne.unicode!)")
+        answer = "\(x.asFraction(logarArray, roundTechnique: Double.RoundTechnique.Up))"
+        XCTAssertEqual(answer, "7 \(FractionConstants.HalfOne.unicode!)")
         
         x = 21.77
         
@@ -114,7 +134,50 @@ class Double_asFractionTests: XCTestCase {
         answer = "\(x.asFraction(TensArray, roundTechnique: Double.RoundTechnique.Up))"
         XCTAssertEqual(answer, "21 \(FractionConstants.FifthFour.unicode!)")
         
-
+        answer = "\(x.asFraction(logarArray, roundTechnique: Double.RoundTechnique.Round))"
+        XCTAssertEqual(answer, "21 \(FractionConstants.HalfOne.unicode!)")
+        answer = "\(x.asFraction(logarArray, roundTechnique: Double.RoundTechnique.Down))"
+        XCTAssertEqual(answer, "21 \(FractionConstants.HalfOne.unicode!)")
+        answer = "\(x.asFraction(logarArray, roundTechnique: Double.RoundTechnique.Up))"
+        XCTAssertEqual(answer, "21 \(FractionConstants.HalfOne.unicode!)")
+        
+        x = 1.27
+        
+        answer = "\(x.asFraction(FractionConstants.WholeNumber, roundTechnique: Double.RoundTechnique.Round))"
+        XCTAssertEqual(answer, "1")
+        answer = "\(x.asFraction(FractionConstants.WholeNumber, roundTechnique: Double.RoundTechnique.Down))"
+        XCTAssertEqual(answer, "1")
+        answer = "\(x.asFraction(FractionConstants.WholeNumber, roundTechnique: Double.RoundTechnique.Up))"
+        XCTAssertEqual(answer, "2")
+        
+        answer = "\(x.asFraction(HalfArray, roundTechnique: Double.RoundTechnique.Round))"
+        XCTAssertEqual(answer, "1 \(FractionConstants.HalfOne.unicode!)")
+        answer = "\(x.asFraction(HalfArray, roundTechnique: Double.RoundTechnique.Down))"
+        XCTAssertEqual(answer, "1")
+        answer = "\(x.asFraction(HalfArray, roundTechnique: Double.RoundTechnique.Up))"
+        XCTAssertEqual(answer, "1 \(FractionConstants.HalfOne.unicode!)")
+        
+        answer = "\(x.asFraction(ThirdsArray, roundTechnique: Double.RoundTechnique.Round))"
+        XCTAssertEqual(answer, "1 \(FractionConstants.ThirdOne.unicode!)")
+        answer = "\(x.asFraction(ThirdsArray, roundTechnique: Double.RoundTechnique.Down))"
+        XCTAssertEqual(answer, "1")
+        answer = "\(x.asFraction(ThirdsArray, roundTechnique: Double.RoundTechnique.Up))"
+        XCTAssertEqual(answer, "1 \(FractionConstants.ThirdOne.unicode!)")
+        
+        answer = "\(x.asFraction(TensArray, roundTechnique: Double.RoundTechnique.Round))"
+        XCTAssertEqual(answer, "1 3/10")
+        answer = "\(x.asFraction(TensArray, roundTechnique: Double.RoundTechnique.Down))"
+        XCTAssertEqual(answer, "1 \(FractionConstants.FifthOne.unicode!)")
+        answer = "\(x.asFraction(TensArray, roundTechnique: Double.RoundTechnique.Up))"
+        XCTAssertEqual(answer, "1 3/10")
+        
+        answer = "\(x.asFraction(logarArray, roundTechnique: Double.RoundTechnique.Round))"
+        XCTAssertEqual(answer, "1 \(FractionConstants.FourthOne.unicode!)")
+        answer = "\(x.asFraction(logarArray, roundTechnique: Double.RoundTechnique.Down))"
+        XCTAssertEqual(answer, "1 \(FractionConstants.FourthOne.unicode!)")
+        answer = "\(x.asFraction(logarArray, roundTechnique: Double.RoundTechnique.Up))"
+        XCTAssertEqual(answer, "1 \(FractionConstants.ThirdOne.unicode!)")
+        
         
     }
 }

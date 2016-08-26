@@ -71,16 +71,16 @@ extension Double {
         // These are if we were close
         case self.decimal < fractions[bestGuess].value && bestGuess>0:
             return findNearest(bestGuess-1, fractions: fractions, roundTechnique: roundTechnique)
-        case self.decimal > fractions[bestGuess].value && bestGuess<fractions.count-1:
+        case self.decimal > fractions[bestGuess].value && bestGuess+1<fractions.count-1:
             return findNearest(bestGuess+1, fractions: fractions, roundTechnique: roundTechnique)
             
-        // These should never be called if the algorithm is correct, but just in case..
-        case self.decimal < fractions[bestGuess].value && !(bestGuess>0):
-            return "Too Small"
-        case self.decimal > fractions[bestGuess].value && !(bestGuess<fractions.count-1):
-            return "Too Big"
+        // These get processed when the array doesn't lead with a zero value or end with a one value
+        case self.decimal < fractions[bestGuess].value: // Redundant to add: && !(bestGuess>0):
+            return showAnswer(fractions[bestGuess])
+        case self.decimal > fractions[bestGuess].value: // Redundant to add: && !(bestGuess+1<fractions.count-1):
+            return showAnswer(fractions[bestGuess + 1])
         default:
-            return "Default case"
+            return "Default case-  Not sure how we got here"
         }
         
     }
