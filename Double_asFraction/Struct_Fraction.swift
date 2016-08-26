@@ -20,7 +20,7 @@ import Foundation
  
  Computed Variables
  - value (Double): The quotient of the numerator and denominator. Used for all comparisons.
- - displayAs (String): Representation by putting a forward slash between the numerator and denominator
+ - displayAs (String): Representation of the fraction. Uses the unicode value, if unicode is null, then manually concatenates the numerator and denominator
  
  Protocols:
  - CustomStringConvertible: has a description
@@ -31,18 +31,19 @@ public struct Fraction: CustomStringConvertible {
     public let numerator: Int
     public let denominator: Int
     public let description: String
-    public let unicode: String
+    public let unicode: String?
     public let adder: Int
     
     public var value: Double {
         return Double(self.numerator) / Double(self.denominator)
     }
     
+    // If unicode is nil, then use a standard format
     public var displayAs: String {
-        return "\(self.numerator)/\(self.denominator)"
+        return self.unicode ?? "\(self.numerator)/\(self.denominator)"
     }
     
-    public init(description: String, numerator: Int, denominator: Int, unicode: String, adder: Int = 0){
+    public init(description: String, numerator: Int, denominator: Int, unicode: String?, adder: Int = 0){
         self.numerator = numerator
         self.denominator = denominator
         self.description = description

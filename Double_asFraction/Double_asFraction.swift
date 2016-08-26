@@ -87,7 +87,7 @@ extension Double {
     
     
     private func showAnswer(fraction: Fraction) -> String {
-        return "\(Int(floor(self)) + fraction.adder) \(fraction.unicode)".stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        return "\(Int(floor(self)) + fraction.adder) \(fraction.displayAs)".stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
     
 }
