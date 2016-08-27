@@ -10,7 +10,14 @@ import Foundation
 
 extension Double {
     
-    enum RoundTechnique {
+    /**
+     Logic to round values
+     
+      * Round: Follows Apple's logic: When equidistant, round away from zero
+      * Up: Towards positive infinity
+      * Down: Towards negative infinity
+    */
+    enum RoundLogic {
         case Round
         case Up
         case Down
@@ -37,7 +44,7 @@ extension Double {
      
      */
     
-    func asFraction(fractions: [Fraction],roundTechnique: RoundTechnique) -> String {
+    func asFraction(fractions: [Fraction],roundTechnique: RoundLogic) -> String {
         
         let bestGuess = Int(floor(decimal * Double(fractions.count)))
         
@@ -45,7 +52,7 @@ extension Double {
         
     }
     
-    private func findNearest(bestGuess: Int, fractions: [Fraction], roundTechnique: RoundTechnique) -> String {
+    private func findNearest(bestGuess: Int, fractions: [Fraction], roundTechnique: RoundLogic) -> String {
         
         switch true {
             
