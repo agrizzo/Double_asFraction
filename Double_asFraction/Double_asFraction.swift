@@ -23,20 +23,24 @@ extension Double {
         case Down
     }
     
-    /// The positive number to the left of the decimal point
-    var number: Double {
-        get {
-            return floor(fabs(self))
-        }
-    }
-    
     /// The positive number to the right of the decimal point
     var decimal: Double {
         get {
-            return fabs(self) - number
+            return fabs(self) - floor(fabs(self))
         }
     }
 
+    /**
+     Helper function that converts the double to the integer closest to zero
+    */
+    func roundTowardZero() -> Int {
+        if !self.isSignMinus {
+            return Int(floor(self))
+        } else {
+            return Int(ceil(self))
+        }
+    }
+    
     /**
      
      Fractions must be a sorted array of fraction - sort by the value.
@@ -44,32 +48,47 @@ extension Double {
      
      */
     
-    func asFraction(fractions: [Fraction],roundTechnique: RoundLogic) -> String {
-        
+    func asFraction(fractions: [Fraction], roundLogic: RoundLogic) -> String {
         let bestGuess = Int(floor(decimal * Double(fractions.count)))
-        
-        return findNearest(bestGuess, fractions: fractions, roundTechnique: roundTechnique)
-        
+        return findNearest(bestGuess, fractions: fractions, roundLogic: roundLogic)
     }
     
-    private func findNearest(bestGuess: Int, fractions: [Fraction], roundTechnique: RoundLogic) -> String {
+    private func findNearest(bestGuess: Int, fractions: [Fraction], roundLogic: RoundLogic) -> String {
         
         switch true {
             
         // most likely scenerio
         case self.decimal > fractions[bestGuess].value && self.decimal < fractions[bestGuess + 1].value:
-            switch roundTechnique {
-            case .Down:
-                return showAnswer(fractions[bestGuess])
-            case .Up:
-                return showAnswer(fractions[bestGuess + 1])
-            case .Round:
-                if (self.decimal - fractions[bestGuess].value) < (fractions[bestGuess + 1].value - self.decimal) {
+            
+            if !self.isSignMinus {
+                switch roundLogic {
+                case .Down:
                     return showAnswer(fractions[bestGuess])
-                } else {
-                    return showAnswer(fractions[bestGuess+1])
+                case .Up:
+                    return showAnswer(fractions[bestGuess + 1])
+                case .Round:
+                    if (self.decimal - fractions[bestGuess].value) < (fractions[bestGuess + 1].value - self.decimal) {
+                        return showAnswer(fractions[bestGuess])
+                    } else {
+                        return showAnswer(fractions[bestGuess+1])
+                    }
                 }
+            } else {
+                switch roundLogic {
+                case .Down:
+                    return showAnswer(fractions[bestGuess + 1])
+                case .Up:
+                    return showAnswer(fractions[bestGuess])
+                case .Round:
+                    if (self.decimal - fractions[bestGuess].value) < (fractions[bestGuess + 1].value - self.decimal) {
+                        return showAnswer(fractions[bestGuess])
+                    } else {
+                        return showAnswer(fractions[bestGuess+1])
+                    }
+                }
+
             }
+            
             
         // Exact match
         case self.decimal == fractions[bestGuess].value:
@@ -83,9 +102,9 @@ extension Double {
             
         // These need to be re-adjusted
         case self.decimal < fractions[bestGuess].value && bestGuess>0:
-            return findNearest(bestGuess-1, fractions: fractions, roundTechnique: roundTechnique)
+            return findNearest(bestGuess-1, fractions: fractions, roundLogic: roundLogic)
         case self.decimal > fractions[bestGuess].value && bestGuess+1<fractions.count-1:
-            return findNearest(bestGuess+1, fractions: fractions, roundTechnique: roundTechnique)
+            return findNearest(bestGuess+1, fractions: fractions, roundLogic: roundLogic)
             
         // These get processed when the array doesn't lead with a zero value or end with a one value
         case self.decimal < fractions[bestGuess].value: // Redundant to add: && !(bestGuess>0):
@@ -100,7 +119,9 @@ extension Double {
     
     
     private func showAnswer(fraction: Fraction) -> String {
-        return "\(Int(floor(self)) + fraction.adder) \(fraction.displayAs)".stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        //return "\(Int(floor(self)) + fraction.adder) \(fraction.displayAs)".stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let offset: Int = !self.isSignMinus ? fraction.adder : fraction.adder * -1
+        return "\(self.roundTowardZero() + offset) \(fraction.displayAs)".stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
     
 }
