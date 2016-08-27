@@ -49,26 +49,32 @@ extension Double {
         
         switch true {
             
-        // Right where we need to be
-        case self.decimal >= fractions[bestGuess].value && self.decimal < fractions[bestGuess + 1].value:
-            switch true {
-            case self.decimal == fractions[bestGuess].value:
+        // most likely scenerio
+        case self.decimal > fractions[bestGuess].value && self.decimal < fractions[bestGuess + 1].value:
+            switch roundTechnique {
+            case .Down:
                 return showAnswer(fractions[bestGuess])
-            case roundTechnique == RoundTechnique.Down:
-                return showAnswer(fractions[bestGuess])
-            case roundTechnique == RoundTechnique.Up:
+            case .Up:
                 return showAnswer(fractions[bestGuess + 1])
-            case roundTechnique == RoundTechnique.Round:
+            case .Round:
                 if (self.decimal - fractions[bestGuess].value) < (fractions[bestGuess + 1].value - self.decimal) {
                     return showAnswer(fractions[bestGuess])
                 } else {
                     return showAnswer(fractions[bestGuess+1])
                 }
-            default:
-                return "Error in Code" //Since there will always be at least 1 roundtechnique that matches
             }
             
-        // These are if we were close
+        // Exact match
+        case self.decimal == fractions[bestGuess].value:
+            return showAnswer(fractions[bestGuess])
+            
+        // Outside the range
+        case self.decimal <= fractions[0].value:
+            return showAnswer(fractions[0])
+        case self.decimal >= fractions[fractions.count - 1].value:
+            return showAnswer(fractions[fractions.count - 1])
+            
+        // These need to be re-adjusted
         case self.decimal < fractions[bestGuess].value && bestGuess>0:
             return findNearest(bestGuess-1, fractions: fractions, roundTechnique: roundTechnique)
         case self.decimal > fractions[bestGuess].value && bestGuess+1<fractions.count-1:
