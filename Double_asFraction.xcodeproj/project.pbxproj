@@ -27,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		A02C4D131D6D2AAF0088C373 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = "<group>"; };
+		A0B8BC391D89D5E300673369 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		A0D8EC8A1D6CE05E009A7801 /* Double_asFraction.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Double_asFraction.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0D8EC8D1D6CE05E009A7801 /* Double_asFraction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Double_asFraction.h; sourceTree = "<group>"; };
 		A0D8EC8F1D6CE05E009A7801 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				A02C4D131D6D2AAF0088C373 /* readme.md */,
+				A0B8BC391D89D5E300673369 /* LICENSE.md */,
 				A0D8EC8C1D6CE05E009A7801 /* Double_asFraction */,
 				A0D8EC981D6CE05E009A7801 /* Double_asFractionTests */,
 				A0D8EC8B1D6CE05E009A7801 /* Products */,
