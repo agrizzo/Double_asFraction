@@ -18,12 +18,12 @@ extension Double {
       * Down: Towards negative infinity
     */
     enum RoundLogic {
-        case Round
-        case Up
-        case Down
+        case round
+        case up
+        case down
     }
     
-    /// The positive number to the right of the decimal point
+    /// The number to the right of the decimal point. (Always positive)
     var decimal: Double {
         get {
             return fabs(self) - floor(fabs(self))
@@ -31,10 +31,15 @@ extension Double {
     }
 
     /**
-     Helper function that converts the double to the integer closest to zero
+     Helper function that rounds the Double to the Integer closest to zero
+     
+     For example:
+     *  2.7 ->  2
+     *  1.0 ->  1
+     * -2.9 -> -2
     */
     func roundTowardZero() -> Int {
-        if !self.isSignMinus {
+        if !(self.sign == .minus) {
             return Int(floor(self))
         } else {
             return Int(ceil(self))
@@ -42,31 +47,33 @@ extension Double {
     }
     
     /**
+     Returns the string representation of the fraction closest to self from the array of fractions
      
+     @Parameter: - fraction: array of fractions
      Fractions must be a sorted array of fraction - sort by the value.
      
      
      */
     
-    func asFraction(fractions: [Fraction], roundLogic: RoundLogic) -> String {
+    func asFraction(_ fractions: [Fraction], roundLogic: RoundLogic) -> String {
         let bestGuess = Int(floor(decimal * Double(fractions.count)))
         return findNearest(bestGuess, fractions: fractions, roundLogic: roundLogic)
     }
     
-    private func findNearest(bestGuess: Int, fractions: [Fraction], roundLogic: RoundLogic) -> String {
+    fileprivate func findNearest(_ bestGuess: Int, fractions: [Fraction], roundLogic: RoundLogic) -> String {
         
         switch true {
             
         // most likely scenerio
         case self.decimal > fractions[bestGuess].value && self.decimal < fractions[bestGuess + 1].value:
             
-            if !self.isSignMinus {
+            if !(self.sign == .minus) {
                 switch roundLogic {
-                case .Down:
+                case .down:
                     return showAnswer(fractions[bestGuess])
-                case .Up:
+                case .up:
                     return showAnswer(fractions[bestGuess + 1])
-                case .Round:
+                case .round:
                     if (self.decimal - fractions[bestGuess].value) < (fractions[bestGuess + 1].value - self.decimal) {
                         return showAnswer(fractions[bestGuess])
                     } else {
@@ -75,18 +82,17 @@ extension Double {
                 }
             } else {
                 switch roundLogic {
-                case .Down:
+                case .down:
                     return showAnswer(fractions[bestGuess + 1])
-                case .Up:
+                case .up:
                     return showAnswer(fractions[bestGuess])
-                case .Round:
+                case .round:
                     if (self.decimal - fractions[bestGuess].value) < (fractions[bestGuess + 1].value - self.decimal) {
                         return showAnswer(fractions[bestGuess])
                     } else {
                         return showAnswer(fractions[bestGuess+1])
                     }
                 }
-
             }
             
             
@@ -118,10 +124,9 @@ extension Double {
     }
     
     
-    private func showAnswer(fraction: Fraction) -> String {
-        //return "\(Int(floor(self)) + fraction.adder) \(fraction.displayAs)".stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        let offset: Int = !self.isSignMinus ? fraction.adder : fraction.adder * -1
-        return "\(self.roundTowardZero() + offset) \(fraction.displayAs)".stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+    fileprivate func showAnswer(_ fraction: Fraction) -> String {
+        let offset: Int = !(self.sign == .minus) ? fraction.adder : fraction.adder * -1
+        return "\(self.roundTowardZero() + offset) \(fraction.displayAs)".trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
 }

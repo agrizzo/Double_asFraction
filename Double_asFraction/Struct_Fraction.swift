@@ -12,15 +12,15 @@ import Foundation
  struct representing a fraction
  
  Properties
- - numerator (Int): Thge top number
+ - numerator (Int): The top number
  - denominator (Int): The bottom number
  - description (String): description
- - unicode (String): the unicode representation of the fraction. Used for display purposes only
+ - unicode (String): The unicode representation of the fraction. Used for display purposes only
  - adder (int): Should have the value of 1, when rounding up to the next number. Otherwise it is zero
  
  Computed Variables
  - value (Double): The quotient of the numerator and denominator. Used for all comparisons.
- - displayAs (String): Representation of the fraction. Uses the unicode value, if unicode is null, then manually concatenates the numerator and denominator
+ - displayAs (String): Representation of the fraction. Uses the unicode value, if unicode is null, then concatenates the numerator, a forward slash and the denominator
  
  Protocols:
  - CustomStringConvertible: has a description
