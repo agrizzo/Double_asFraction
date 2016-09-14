@@ -49,10 +49,10 @@ extension Double {
     /**
      Returns the string representation of the fraction closest to self from the array of fractions
      
-     @Parameter: - fraction: array of fractions
-     Fractions must be a sorted array of fraction - sort by the value.
-     
-     
+     - returns: String
+     - Parameters:
+       - fractions: Array of Fractions. Must be sorted in ascending order.
+       - roundLogic: Rounding technique
      */
     
     func asFraction(_ fractions: [Fraction], roundLogic: RoundLogic) -> String {
@@ -60,6 +60,14 @@ extension Double {
         return findNearest(bestGuess, fractions: fractions, roundLogic: roundLogic)
     }
     
+    /**
+     Find the nearest entry in the array
+     
+     - returns: String
+     - parameter bestGuess: Index value most likely to have answer
+     - parameter fractions: Array of Fractions. Must be sorted in ascending order
+     - parameter roundLogic: Rounding technique
+    */
     fileprivate func findNearest(_ bestGuess: Int, fractions: [Fraction], roundLogic: RoundLogic) -> String {
         
         switch true {
@@ -118,7 +126,7 @@ extension Double {
         case self.decimal > fractions[bestGuess].value: // Redundant to add: && !(bestGuess+1<fractions.count-1):
             return showAnswer(fractions[bestGuess + 1])
         default:
-            return "Default case-  Not sure how we got here"
+            fatalError("Default case  Not sure how we got here")
         }
         
     }
